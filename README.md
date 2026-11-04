@@ -56,7 +56,7 @@ The owner works from a private admin portal that requires a password and an auth
 ```bash
 git clone <this-repo-url>
 cd bakery-order-management
-npm start            # or: python3 -m http.server 8080 --directory src/web
+python3 -m http.server 8080 --directory src/web   # or, with Node.js installed: npm start
 ```
 
 Open http://localhost:8080. With the placeholder values in `src/web/js/config.js`, the site runs in **demo mode**: the catalog comes from `src/web/js/data.js`, the calendar blocks Mondays plus a few sample days, and orders are saved in your browser's local storage (open the console and run `DemoBackend.requests()` to see them).
