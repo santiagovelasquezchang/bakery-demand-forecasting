@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catering — Sample Bakery</title>
+  <meta name="description" content="Dessert tables, tres leches trays and coffee & pastry mornings for your event.">
+  <link rel="icon" href="assets/img/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playball&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Jost:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="catering">
+  <main class="container" data-catering-page>
+    <header class="page-head">
+      <div class="eyebrow">Catering</div>
+      <h1>Sweets for your whole event</h1>
+      <p class="lede">From office mornings to wedding dessert tables. Every event is different, so tell us about yours and the baker will put together a quote.</p>
+    </header>
+
+    <p class="notice" style="margin-bottom:22px">These packages are examples to inspire you. Final menus and prices are built for each event.</p>
+
+    <div class="package-grid">
+      <article class="package reveal">
+        <div class="tag">Weddings &amp; showers</div>
+        <h3>Dessert Table</h3>
+        <p class="muted">Mini cakes, cupcakes and decorated cookies styled in your colors, with a centerpiece cake.</p>
+        <span class="package-meta">Best for 30+ guests</span>
+        <button class="btn btn-outline" type="button" data-package="Dessert Table">Ask about this</button>
+      </article>
+      <article class="package reveal">
+        <div class="tag">Parties &amp; offices</div>
+        <h3>Tres Leches Trays</h3>
+        <p class="muted">Trays of our house tres leches in your choice of flavors, ready to slice and serve.</p>
+        <span class="package-meta">Best for 12–100 guests</span>
+        <button class="btn btn-outline" type="button" data-package="Tres Leches Trays">Ask about this</button>
+      </article>
+      <article class="package reveal">
+        <div class="tag">Meetings &amp; brunch</div>
+        <h3>Coffee &amp; Pastry Morning</h3>
+        <p class="muted">Fresh coffee with muffins, croissants and pastries from our café.</p>
+        <span class="package-meta">Best for 10–50 guests</span>
+        <button class="btn btn-outline" type="button" data-package="Coffee & Pastry Morning">Ask about this</button>
+      </article>
+      <article class="package reveal">
+        <div class="tag">Birthdays &amp; quinceañeras</div>
+        <h3>Cake &amp; Cupcake Set</h3>
+        <p class="muted">A celebration cake with matching cupcakes, so everyone gets a sweet.</p>
+        <span class="package-meta">Best for 20–80 guests</span>
+        <button class="btn btn-outline" type="button" data-package="Cake & Cupcake Set">Ask about this</button>
+      </article>
+    </div>
+
+    <div class="two-col" style="margin-top:56px" id="catering-form">
+      <form data-catering-form novalidate>
+        <h2 style="font-size:28px;margin-bottom:18px">Tell us about your event</h2>
+        <div class="field-row">
+          <div class="field">
+            <label for="c-package">What are you interested in?</label>
+            <select class="select" id="c-package" name="package" required>
+              <option value="">Choose one</option>
+              <option>Dessert Table</option>
+              <option>Tres Leches Trays</option>
+              <option>Coffee &amp; Pastry Morning</option>
+              <option>Cake &amp; Cupcake Set</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="c-guests">Number of guests</label>
+            <input class="input" id="c-guests" name="guests" type="number" min="1" max="1000" placeholder="e.g. 60" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="c-desc">Tell us about your event</label>
+          <textarea class="textarea" id="c-desc" name="description" required maxlength="1500" placeholder="Type of event, colors or theme, flavors you love, setup or delivery needs…"></textarea>
+        </div>
+        <div class="field"><label for="c-date">Event date</label><input class="input" id="c-date" name="date" type="date" required></div>
+        <div class="field-row">
+          <div class="field">
+            <label for="c-budget">Budget <span class="muted" style="font-weight:400">(optional)</span></label>
+            <select class="select" id="c-budget" name="budget">
+              <option value="">Not sure yet</option>
+              <option>Under $200</option><option>$200 – $500</option><option>$500 – $1,000</option><option>$1,000+</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="c-name">Name</label><input class="input" id="c-name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="c-email">Email</label><input class="input" id="c-email" name="email" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="c-phone">Phone</label><input class="input" id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+        <button class="btn btn-primary" type="submit">Request a catering quote</button>
+      </form>
+
+      <aside class="side-card">
+        <h3>How it works</h3>
+        <ol>
+          <li>The baker reviews your event details.</li>
+          <li>You get a menu and price by email within 1–2 days.</li>
+          <li>A <span data-deposit-pct>50</span>% deposit reserves your date.</li>
+          <li>We bake everything fresh for your event.</li>
+        </ol>
+      </aside>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
+  <script src="js/demo-backend.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/availability.js"></script>
+</body>
+</html>

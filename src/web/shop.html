@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop — Sample Bakery</title>
+  <link rel="icon" href="assets/img/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playball&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Jost:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="shop">
+  <main class="container">
+    <header class="page-head">
+      <div class="eyebrow">Ready-made</div>
+      <h1>Order a cake</h1>
+      <p class="lede">Our favorites, ready to order online. Pick a size and flavor, then choose your pickup date at checkout.</p>
+    </header>
+
+    <div class="product-grid" data-products></div>
+
+    <section class="section-sm">
+      <div class="band reveal">
+        <div>
+          <h2>Want to change something?</h2>
+          <p>Design your own in the Custom Cake Builder: tiers, flavors, filling, icing and color.</p>
+        </div>
+        <a class="btn btn-gold" href="builder.html">Build your cake →</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
+  <script src="js/demo-backend.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

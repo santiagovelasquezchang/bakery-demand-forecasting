@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Custom Cake Builder — Sample Bakery</title>
+  <link rel="icon" href="assets/img/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playball&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Jost:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="builder">
+  <main class="container">
+    <header class="page-head" style="padding-bottom:32px">
+      <div class="eyebrow">Custom Cake Builder</div>
+      <h1>Design your cake</h1>
+      <p class="lede">Go step by step and watch it come together. Prices update as you choose.</p>
+    </header>
+
+    <div class="builder">
+      <ol class="rail" data-rail aria-label="Builder steps"></ol>
+      <section class="step-panel" data-panel aria-live="polite"></section>
+      <aside class="preview-card" aria-label="Your cake">
+        <div class="preview-stage" data-preview></div>
+        <div class="preview-body">
+          <h3>Your cake</h3>
+          <ul class="summary-list" data-summary></ul>
+          <div class="total-row"><span class="muted">Estimated total</span><strong data-total>$0</strong></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
+  <script src="js/demo-backend.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/builder.js"></script>
+</body>
+</html>
