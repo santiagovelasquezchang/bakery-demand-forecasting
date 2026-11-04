@@ -1,0 +1,34 @@
+# Data: never commit partner data, not even a sample. Only synthetic files in data/synthetic/ are allowed.
+data/*
+!data/README.md
+!data/synthetic/
+
+# Credentials and local config
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+supabase/.temp/
+supabase/.branches/
+supabase/config.toml
+
+# Large or generated outputs
+*.zip
+*.parquet
+*.xlsx
+*.csv
+!data/synthetic/*.csv
+reports/*.pdf
+
+# Notebooks: clear outputs before committing (see README)
+.ipynb_checkpoints/
+
+# Tooling
+node_modules/
+__pycache__/
+.venv/
+.DS_Store
+.vscode/
+.idea/
+.claude/
