@@ -2,6 +2,8 @@
 
 **A simple weekly forecast, a few replenishment rules and an online ordering site can give a small bakery-café data-driven answers to "what do we bake, what do we buy, and when?"**
 
+> **Project page:** open `index.html` (see *How to reproduce*). It becomes the GitHub Pages site once the repository is public.
+>
 > **Draft · private repository.** Nothing here is public until our partner approves it in writing. The partner is described only as *a small, owner-run bakery and café* (wording pending partner approval). No partner data is stored in this repository; figures show aggregate results only.
 
 ## 60-second summary
@@ -152,15 +154,15 @@ The owner works from a private portal protected by a password and an authenticat
 
 The forecasting and inventory code depend on partner data that can't be shared. A synthetic dataset with the same structure is planned so the full pipeline can run end to end.
 
-### Ordering website (runs today, about 2 minutes)
+### Project page and ordering demo (about 2 minutes)
 
 ```bash
 git clone <this-repo-url>
 cd bakery-demand-forecasting
-python3 -m http.server 8080 --directory src/web   # or, with Node.js installed: npm start
+python3 -m http.server 8080   # or, with Node.js installed: npm start
 ```
 
-Open http://localhost:8080. With the placeholder values in `src/web/js/config.js`, the site runs in **demo mode**: the catalog comes from `src/web/js/data.js`, the calendar blocks Mondays plus a few sample days, and orders are saved in your browser (open the console and run `DemoBackend.requests()` to see them).
+Open http://localhost:8080 for the project page (`index.html`, the web version of this README). The ordering demo is at http://localhost:8080/src/web/. With the placeholder values in `src/web/js/config.js`, the site runs in **demo mode**: the catalog comes from `src/web/js/data.js`, the calendar blocks Mondays plus a few sample days, and orders are saved in your browser (open the console and run `DemoBackend.requests()` to see them).
 
 To connect a real backend:
 
@@ -180,6 +182,7 @@ To connect a real backend:
 
 | Path | What it is |
 |---|---|
+| `index.html` | Project page: the summary of this README as a web page (future GitHub Pages site) |
 | `src/web/` | Ordering website and admin portal (HTML, CSS, JavaScript; no build step) |
 | `src/web/js/demo-backend.js` | Local stand-in for the database, used in demo mode |
 | `supabase/` | Database schema, row-level security, order checks and email function |

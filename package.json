@@ -3,7 +3,7 @@
   "private": true,
   "description": "Demand forecasting, inventory planning and online ordering for a small bakery-café.",
   "scripts": {
-    "start": "python3 -m http.server 8080 --directory src/web",
+    "start": "python3 -m http.server 8080",
     "db:push": "supabase db push",
     "fn:deploy": "supabase functions deploy respond"
   },
