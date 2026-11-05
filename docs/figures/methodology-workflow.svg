@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 230" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="t"><title id="t">Project workflow from research questions to daily decisions</title><rect width="1000" height="230" fill="#ffffff"/>
+<rect x="40.0" y="30" width="172" height="170" rx="14" fill="#1f2a44"/>
+<text x="126.0" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#b9c9e6" letter-spacing="1.5">STEP 1</text>
+<text x="126.0" y="98" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">Question</text>
+<text x="126.0" y="130" text-anchor="middle" font-size="13.5" fill="#e3eaf6">Can our own sales data</text>
+<text x="126.0" y="150" text-anchor="middle" font-size="13.5" fill="#e3eaf6">guide production,</text>
+<text x="126.0" y="170" text-anchor="middle" font-size="13.5" fill="#e3eaf6">stock and staffing?</text>
+<path d="M216.0 115h5.0" stroke="#5a6478" stroke-width="2.5"/><path d="M219.0 109l7 6-7 6z" fill="#5a6478"/>
+<rect x="227.0" y="30" width="172" height="170" rx="14" fill="#2f6db5"/>
+<text x="313.0" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#b9c9e6" letter-spacing="1.5">STEP 2</text>
+<text x="313.0" y="98" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">Data</text>
+<text x="313.0" y="130" text-anchor="middle" font-size="13.5" fill="#e3eaf6">20 months of café</text>
+<text x="313.0" y="150" text-anchor="middle" font-size="13.5" fill="#e3eaf6">point-of-sale lines +</text>
+<text x="313.0" y="170" text-anchor="middle" font-size="13.5" fill="#e3eaf6">cake recipe files</text>
+<path d="M403.0 115h5.0" stroke="#5a6478" stroke-width="2.5"/><path d="M406.0 109l7 6-7 6z" fill="#5a6478"/>
+<rect x="414.0" y="30" width="172" height="170" rx="14" fill="#2f6db5"/>
+<text x="500.0" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#b9c9e6" letter-spacing="1.5">STEP 3</text>
+<text x="500.0" y="98" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">Models</text>
+<text x="500.0" y="130" text-anchor="middle" font-size="13.5" fill="#e3eaf6">Weekly demand forecast</text>
+<text x="500.0" y="150" text-anchor="middle" font-size="13.5" fill="#e3eaf6">+ replenishment rules</text>
+<text x="500.0" y="170" text-anchor="middle" font-size="13.5" fill="#e3eaf6">per ingredient class</text>
+<path d="M590.0 115h5.0" stroke="#5a6478" stroke-width="2.5"/><path d="M593.0 109l7 6-7 6z" fill="#5a6478"/>
+<rect x="601.0" y="30" width="172" height="170" rx="14" fill="#2f6db5"/>
+<text x="687.0" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#b9c9e6" letter-spacing="1.5">STEP 4</text>
+<text x="687.0" y="98" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">Tools</text>
+<text x="687.0" y="130" text-anchor="middle" font-size="13.5" fill="#e3eaf6">Website for orders,</text>
+<text x="687.0" y="150" text-anchor="middle" font-size="13.5" fill="#e3eaf6">dashboard, 60-second</text>
+<text x="687.0" y="170" text-anchor="middle" font-size="13.5" fill="#e3eaf6">daily count form</text>
+<path d="M777.0 115h5.0" stroke="#5a6478" stroke-width="2.5"/><path d="M780.0 109l7 6-7 6z" fill="#5a6478"/>
+<rect x="788.0" y="30" width="172" height="170" rx="14" fill="#1f2a44"/>
+<text x="874.0" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#b9c9e6" letter-spacing="1.5">STEP 5</text>
+<text x="874.0" y="98" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">Decisions</text>
+<text x="874.0" y="130" text-anchor="middle" font-size="13.5" fill="#e3eaf6">What to bake, what to</text>
+<text x="874.0" y="150" text-anchor="middle" font-size="13.5" fill="#e3eaf6">buy and when, who</text>
+<text x="874.0" y="170" text-anchor="middle" font-size="13.5" fill="#e3eaf6">to schedule</text>
+</svg>
