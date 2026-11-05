@@ -156,7 +156,7 @@ The forecasting and inventory code depend on partner data that can't be shared. 
 
 ```bash
 git clone <this-repo-url>
-cd bakery-order-management
+cd bakery-demand-forecasting
 python3 -m http.server 8080 --directory src/web   # or, with Node.js installed: npm start
 ```
 
