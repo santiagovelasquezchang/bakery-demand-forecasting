@@ -115,8 +115,15 @@ Picking a date caused the most back-and-forth, so the calendar only offers days 
 
 The owner works from a private portal protected by a password and an authenticator app. Orders appear on a calendar and can be accepted, declined with a suggested new date, or answered with questions, and the customer is emailed automatically. Every order is stored with the fields in the schema above, which gives the forecast a new, structured data source for custom orders.
 
-![The Custom Cake Builder: a seven-step form with a live cake preview and running price](docs/figures/cake-builder-demo.jpg)
-*The Custom Cake Builder, running on synthetic sample data.*
+**Screenshots** (demo version: placeholder bakery name, drawn cakes, sample prices):
+
+| | |
+|---|---|
+| ![Home page](docs/figures/site/1-home.jpg) **Home.** Leads to the three ways to order. | ![Shop](docs/figures/site/2-shop.jpg) **Shop.** Ready-made cakes with starting prices. |
+| ![Cake builder on the Color step with a live preview and price](docs/figures/site/3-builder.jpg) **Builder.** Seven steps; the drawing and price update with each choice. | ![Cart with deposit and a pickup calendar where blocked days are striped](docs/figures/site/4-cart.jpg) **Cart and calendar.** Grey = too soon, striped = blocked by the owner. |
+| ![Order received with an order number](docs/figures/site/5-confirm.jpg) **Order received.** Order number right away; nothing charged until the owner accepts. | ![Quote request form with photo upload](docs/figures/site/6-quote.jpg) **Quote request.** For designs the builder can't cover. |
+
+The admin portal isn't pictured because it needs a real login and shows real customer orders.
 
 ## 4 · Results
 

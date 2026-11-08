@@ -69,6 +69,17 @@
     .btn { display: inline-block; background: var(--blue); color: #fff; text-decoration: none; font-weight: 600; padding: 10px 18px; border-radius: 999px; font-size: 15px; }
     .btn:hover { background: #255a97; }
 
+    .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 22px 0 8px; }
+    .shots figure { margin: 0; }
+    .shots .frame { padding: 0; }
+    .shots a { display: block; }
+    .shots figcaption b { color: var(--ink); }
+    .steps { counter-reset: s; list-style: none; padding: 0; margin: 0 0 14px; }
+    .steps li { position: relative; padding-left: 34px; margin-bottom: 10px; max-width: 70ch; }
+    .steps li::before { counter-increment: s; content: counter(s); position: absolute; left: 0; top: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--blue-soft); color: var(--blue); font-size: 12px; font-weight: 700; display: grid; place-items: center; }
+    .terms { font-size: 14px; color: var(--muted); margin-top: 12px; }
+    .terms b { color: var(--ink); }
+
     .team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .person { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; }
     .person b { display: block; }
@@ -77,7 +88,7 @@
 
     @media (max-width: 860px) {
       .pieces { grid-template-columns: 1fr 1fr; }
-      .grid2, .team { grid-template-columns: 1fr; }
+      .grid2, .team, .shots { grid-template-columns: 1fr; }
     }
     @media (max-width: 560px) {
       .stats, .pieces { grid-template-columns: 1fr; }
@@ -189,11 +200,13 @@
         <p class="owner">Mohinuddin Shaikh · forecasting and data pipeline</p>
         <p>The shipped model is <strong>top-down</strong>: estimate the store’s weekly total as the mean of the last 12 clean weeks, then split it across items by each item’s recent share. Store totals forecast at about 16% error against 37% for single items, so estimating the level once cancels most item-level noise.</p>
         <p>Models were compared on <strong>14 rolling origins</strong> with a 4-week horizon (7,056 forecast–actual pairs each) using <strong>WAPE</strong>. A seasonal term is built in but kept neutral: with 1.5 years of data the yearly pattern can’t yet be told apart from noise (ANOVA across months, p = 0.46).</p>
+        <p class="terms"><b>WAPE</b> (weighted absolute percentage error): all the units the forecast missed by, divided by all the units actually sold. 36.9% means that for every 100 items sold, the forecast was off by about 37 in total. <b>Rolling origin:</b> we went back to 14 different past weeks, forecast the next 4 weeks using only data available at that time, and compared with what really sold. This tests the model the way it will be used.</p>
       </div>
 
       <div class="card" style="margin-top:16px">
         <h3>2 · Inventory framework</h3>
         <p class="owner">Sun Xuan · inventory and production planning</p>
+        <p>Ingredients are grouped by how fast they spoil and how much it hurts to run out, and each group gets its own buying rule.</p>
         <div class="table-scroll">
           <table>
             <thead><tr><th>Class</th><th>Examples</th><th>Rule</th></tr></thead>
@@ -217,12 +230,64 @@
       <div class="card" style="margin-top:16px">
         <h3>4 · Online ordering system</h3>
         <p class="owner">Santiago Velasquez · website and online ordering</p>
-        <p>Custom cake orders had no data at all; they lived in chat threads. The site replaces the thread with one guided form: a ready-made cake, a seven-step builder, or a quote request, with the price updating at every choice. The calendar only offers days far enough ahead that the owner hasn’t blocked, and a database function re-checks prices and dates before saving.</p>
-        <p>The owner answers from a portal protected by a password and an authenticator app, and the customer is emailed automatically. Every order is stored with the fields in Fig. 2, which gives the forecast a structured source for custom orders.</p>
+        <p><strong>The problem it solves.</strong> Custom cake orders had no data at all: they arrived by calls, texts and chat messages, so details got lost, prices were worked out by hand each time, and there was no record to learn from. The website replaces those threads with one guided ordering process, and every order is saved in the same structured format (the tables in Fig. 2). That gives the business, and our forecast, a clean source of custom-order data for the first time.</p>
+        <p><strong>How a customer orders.</strong></p>
+        <ol class="steps">
+          <li><strong>Choose a cake</strong> in one of three ways: a ready-made cake from the shop, a cake designed in the seven-step builder, or a quote request for anything unusual.</li>
+          <li><strong>See the price at every step.</strong> The builder draws the cake as it is designed and updates the total with each choice, so there is no back-and-forth about cost.</li>
+          <li><strong>Pick a pickup date.</strong> The calendar greys out days that are too soon (cakes need a week’s notice) and stripes the days the owner has blocked.</li>
+          <li><strong>Send the order.</strong> Before saving, a function in the database checks it again: current prices, item still offered, enough notice and date still open. A customer can’t change a price in the browser and get it accepted.</li>
+          <li><strong>The owner answers</strong> from a private admin portal that needs a password plus a code from an authenticator app. They see orders on a calendar, accept or decline, and block days off. The customer gets an email automatically.</li>
+        </ol>
         <figure>
           <div class="frame"><img src="docs/figures/order-flow.svg" alt="Order flow: choose a cake, pick an open date, send the order; a database function checks and saves it; the owner reviews it in the portal and accepts or declines; an email goes to the customer" width="1000" height="470" loading="lazy"></div>
-          <figcaption>Fig. 4 · How an order moves through the system.</figcaption>
+          <figcaption>Fig. 4 · How an order moves through the system. Top row: what the customer does. Middle: the database checks and stores it. Bottom: what the owner does.</figcaption>
         </figure>
+
+        <h3 style="margin-top:26px">Screenshots of the site</h3>
+        <p class="formula" style="margin-top:0">Taken from the demo version, which uses a placeholder bakery name, drawn cake images and sample prices. Click any image to see it full size.</p>
+        <div class="shots">
+          <figure>
+            <a class="frame" href="docs/figures/site/1-home.jpg"><img src="docs/figures/site/1-home.jpg" alt="Website home page with the headline Cakes made for your sweetest moments and buttons to build a cake or browse the gallery" width="1280" height="860" loading="lazy"></a>
+            <figcaption><b>Fig. 5a · Home page.</b> The first thing customers see. The menu leads to the three ways to order: shop, cake builder and quote request.</figcaption>
+          </figure>
+          <figure>
+            <a class="frame" href="docs/figures/site/2-shop.jpg"><img src="docs/figures/site/2-shop.jpg" alt="Shop page listing ready-made cakes with a short description and starting price for each" width="1280" height="860" loading="lazy"></a>
+            <figcaption><b>Fig. 5b · Shop.</b> Ready-made cakes with a starting price. Each one opens a page to pick size and flavor and add it to the cart.</figcaption>
+          </figure>
+          <figure>
+            <a class="frame" href="docs/figures/site/3-builder.jpg"><img src="docs/figures/site/3-builder.jpg" alt="Cake builder on step 5 of 7, Color, with a lavender cake preview and a summary of the choices made so far" width="1280" height="860" loading="lazy"></a>
+            <figcaption><b>Fig. 5c · Cake builder.</b> Seven steps on the left (size, flavor, filling, icing, color, message, review). The drawing on the right changes with every choice, along with the summary and price.</figcaption>
+          </figure>
+          <figure>
+            <a class="frame" href="docs/figures/site/4-cart.jpg"><img src="docs/figures/site/4-cart.jpg" alt="Cart with the designed cake, the order total, the deposit amount, contact fields and a calendar where blocked days are striped" width="1280" height="1000" loading="lazy"></a>
+            <figcaption><b>Fig. 5d · Cart and pickup calendar.</b> Total and deposit are shown up front. Grey days are less than a week away, striped days are blocked by the owner, and only open days can be clicked.</figcaption>
+          </figure>
+          <figure>
+            <a class="frame" href="docs/figures/site/5-confirm.jpg"><img src="docs/figures/site/5-confirm.jpg" alt="Order received message with an order number and the pickup date" width="1280" height="860" loading="lazy"></a>
+            <figcaption><b>Fig. 5e · Order received.</b> The customer gets an order number right away. Nothing is charged until the owner accepts the order.</figcaption>
+          </figure>
+          <figure>
+            <a class="frame" href="docs/figures/site/6-quote.jpg"><img src="docs/figures/site/6-quote.jpg" alt="Quote request form with occasion, number of guests, design description, photo upload and a What happens next box" width="1280" height="860" loading="lazy"></a>
+            <figcaption><b>Fig. 5f · Quote request.</b> For designs the builder can’t cover. The customer describes the idea and can upload reference photos; the owner replies with a price.</figcaption>
+          </figure>
+        </div>
+        <p class="formula">The admin portal isn’t pictured: it only works with a real login and would show real customer orders.</p>
+
+        <h3 style="margin-top:26px">How it’s built</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Part</th><th>Technology</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td>Front end</td><td>HTML, CSS and plain JavaScript</td><td>The pages customers use. Works on phones and computers, no app to install.</td></tr>
+              <tr><td>Database</td><td>Supabase (PostgreSQL)</td><td>Stores products, orders, quotes and blocked days.</td></tr>
+              <tr><td>Order checks</td><td>Database functions (RPC)</td><td>Re-check prices, notice and dates before an order is saved.</td></tr>
+              <tr><td>Security</td><td>Row-level security, two-factor login</td><td>Customers can only send orders, never read them. Only the owner, after password and app code, can see them.</td></tr>
+              <tr><td>Emails</td><td>Edge function</td><td>Sends the confirmation or decline message when the owner answers.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:18px"><strong>Why it matters for the project.</strong> The forecast in piece 1 only covers the café, because custom cakes had no history. From now on, every website order is a dated, priced, itemized record, so custom-cake demand can be forecast too, and recipes can turn confirmed orders into ingredient lists for piece 2.</p>
         <a class="btn" href="src/web/index.html">Try the ordering demo →</a>
         <p class="formula">Runs on synthetic sample data in your browser. No real products, prices or customers.</p>
       </div>
@@ -233,7 +298,7 @@
       <h2>Simple beat complex</h2>
       <figure>
         <div class="frame"><img src="docs/figures/model-comparison.svg" alt="Bar chart of forecast error by model: top-down 36.9%, with yearly seasonality 36.9%, 12-week moving average 37.1%, month factors 37.5%, Holt damped trend 39.6%, seasonal blend 44.2%, XGBoost 45.7%, last week carried forward 47.2%, same week last year 56.7%" width="1000" height="480" loading="lazy"></div>
-        <figcaption>Fig. 5 · Forecast error by model. Lower is better.</figcaption>
+        <figcaption>Fig. 6 · Forecast error (WAPE) by model. Lower is better. The top-down model is the one we deliver.</figcaption>
       </figure>
       <div class="grid2" style="margin-top:12px">
         <div>
