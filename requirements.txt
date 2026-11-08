@@ -1,0 +1,7 @@
+# Python 3.10 or newer. Install with: pip install -r requirements.txt
+pandas>=2.2
+numpy>=1.24
+scipy>=1.10
+statsmodels>=0.14
+matplotlib>=3.7
+nbstripout>=0.7     # clears notebook outputs on commit: run "nbstripout --install" once
