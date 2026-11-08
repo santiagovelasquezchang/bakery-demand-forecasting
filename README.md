@@ -28,7 +28,7 @@ The method is deliberately simple so the owner can understand and trust it: an a
 
 ## Approach: the forecasting method
 
-<!-- Section owner: Moin Shaikh -->
+<!-- Section owner: Mohinuddin Shaikh -->
 
 The forecast works in two steps. First, it predicts **total weekly units** for the whole cafe as the average of the last 12 normal weeks. Second, it **splits that total across items** using each item's average share of sales over the same 12 weeks. For forecasts further ahead, each new week's forecast is added to the history and the average is recalculated, so one rule covers any number of weeks.
 
@@ -50,7 +50,7 @@ Each forecast comes with a **likely range**: the 5th to 95th percentile of the m
 
 ## How to reproduce
 
-<!-- Section owner: Moin Shaikh -->
+<!-- Section owner: Mohinuddin Shaikh -->
 
 Requires Python 3.10 or newer. Everything below runs on the synthetic sample data in under a minute.
 
@@ -111,7 +111,7 @@ Python (pandas, NumPy, SciPy, statsmodels, matplotlib), Git and GitHub. **[place
 
 | Name | Role | LinkedIn (optional) |
 |---|---|---|
-| Moin Shaikh | Demand forecasting: method, evaluation, reproducibility | |
+| Mohinuddin Shaikh | Demand forecasting: method, evaluation, reproducibility | |
 | **[placeholder]** | | |
 | **[placeholder]** | | |
 
