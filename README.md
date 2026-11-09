@@ -71,6 +71,29 @@ Custom cake orders and stock counts were the main data gaps: one lived only in c
 
 ![Entity-relationship diagram with tables for customers, orders, order items, products, categories, ingredients, product ingredients and custom cake requests](docs/figures/er-diagram.webp)
 
+### 2.1 Data Foundation: Database and Inventory Layer
+
+*Owner: Sourabh Salunke (database, data cleaning, inventory layer)*
+
+**One shared database turns the partner's raw exports into inventory data a weekly planner can use.**
+
+![Data flow from partner CSV exports into a Supabase PostgreSQL database, where SQL cleaning prepares the sales, ingredients, recipes and inventory tables, which feed replenishment models, a weekly planner model and a dashboard](reports/figures/data_flow.png)
+
+The partner supplied exports as CSV files. These were loaded into a Supabase (PostgreSQL) database and cleaned with SQL inside Supabase, so the whole team works from one consistent source instead of separate files.
+
+On top of the sales tables we added an inventory layer: an **ingredients** table (group, shelf life, estimated cost, lead time, replenishment model, current stock) and a **recipes** table (in progress) linking each menu item to the ingredients it uses. Together they convert sales into expected ingredient usage, which is what the weekly planner needs.
+
+Each ingredient follows one of three replenishment policies, chosen by how fast it spoils and how long it takes to arrive: periodic review for fresh dairy, reorder point for coffee beans and tea, and a visual two-bin rule for packaging.
+
+**Next steps (data foundation)**
+- Write the SQL cleaning query for the loaded sales data.
+- Complete the recipes table (ingredient amount per menu item).
+- Build the weekly planner model: forecast item sales, convert them to ingredient usage through the recipes table, and compare with current stock to produce a weekly order plan.
+- Implement the replenishment policies as Python models and backtest them.
+- Add a dashboard to the project site showing stock levels and the weekly plan.
+
+*Limitation: ingredient costs are rough estimates until the partner supplies real figures. No partner data is stored in this repository.*
+
 ## 3 · Inventory Capture
 
 *Owner: Abhishek Roushan (scanner and Inventory Capture section)*
@@ -146,7 +169,7 @@ The weekly forecast feeds a bill-of-materials conversion (for example, ounces of
 
 *Owner: Sourabh Salunke (dashboard, reporting)*
 
-**[placeholder]** <!-- TODO (owner): describe the dashboard and add a screenshot with synthetic or approved data, ~150–250 words. -->
+**Planned.** A dashboard on the project site will show current stock levels and the weekly order plan, built on the database and inventory layer described in section 2.1. <!-- TODO (owner): add a screenshot with synthetic or approved data once it is built. -->
 
 ### 4.4 Online ordering website
 
@@ -310,7 +333,7 @@ Python (pandas, NumPy, SciPy, statsmodels, matplotlib), Git and GitHub. Website:
 | Mohinuddin Shaikh | Demand forecasting: method, evaluation, reproducibility | |
 | Abhishek Roushan | Inventory Capture: barcode scanner app | |
 | Sun Xuan | Inventory and production planning | |
-| Sourabh Salunke | Data cleaning, dashboard, reporting | |
+| Sourabh Salunke | Database, data cleaning, inventory layer, dashboard | |
 | Santiago Velasquez | Ordering website: front end, back end and admin portal | |
 | Prateek Jaiswal | Faculty mentor | |
 

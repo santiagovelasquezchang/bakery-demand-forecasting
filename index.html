@@ -188,6 +188,24 @@
         <div class="frame"><img src="docs/figures/er-diagram.webp" alt="Entity-relationship diagram with tables for customers, orders, order items, products, categories, ingredients, product ingredients and custom cake requests" width="2000" height="982" loading="lazy"></div>
         <figcaption>Fig. 2 · Data model linking customers, orders, products and ingredients.</figcaption>
       </figure>
+
+      <div class="card" style="margin-top:22px">
+        <h3>Data foundation: one shared database</h3>
+        <p class="owner">Sourabh Salunke · database, data cleaning and inventory layer</p>
+        <p>The partner supplied exports as CSV files. Instead of each of us working from a different copy, they were loaded into one <strong>Supabase (PostgreSQL) database</strong> and cleaned with SQL inside it. The whole team now works from the same, consistent source, and the raw files never enter this repository.</p>
+        <figure>
+          <div class="frame"><img src="reports/figures/data_flow.png" alt="Data flow from partner CSV exports into a Supabase PostgreSQL database, where SQL cleaning prepares the sales, ingredients, recipes and inventory tables, which feed replenishment models, a weekly planner model and a dashboard" width="1822" height="840" loading="lazy"></div>
+          <figcaption>Fig. 2b · From partner exports to a weekly inventory plan. Solid boxes are built; dashed boxes are planned.</figcaption>
+        </figure>
+        <p style="margin-top:14px">On top of the sales tables he added an <strong>inventory layer</strong>:</p>
+        <ul class="clean">
+          <li><strong>Ingredients</strong>: each ingredient’s group, shelf life, estimated cost, lead time, replenishment rule and current stock.</li>
+          <li><strong>Recipes</strong> (in progress): how much of each ingredient every menu item uses.</li>
+        </ul>
+        <p><strong>Why the recipes table matters.</strong> The forecast predicts items, but the bakery buys ingredients. The recipes table is the bridge: if the forecast says 100 lattes next week and a latte uses 8 oz of milk, the planner knows to expect about 800 oz of milk. Comparing that expected usage with current stock gives the weekly order plan.</p>
+        <p>Each ingredient follows one of three buying rules, chosen by how fast it spoils and how long it takes to arrive: periodic review for fresh dairy, reorder point for coffee beans and tea, and a visual two-bin rule for packaging (see the inventory framework below).</p>
+        <p class="formula">Next: the SQL cleaning query, the completed recipes table, the weekly planner model, the replenishment rules as backtested Python models, and a dashboard on this site. Ingredient costs are rough estimates until the partner supplies real figures.</p>
+      </div>
     </section>
 
     <section id="capture">
@@ -275,7 +293,8 @@
       <div class="card" style="margin-top:16px">
         <h3>3 · Dashboard</h3>
         <p class="owner">Sourabh Salunke · data cleaning, dashboard and reporting</p>
-        <div class="todo">Section in progress: dashboard description and screenshot with approved data.</div>
+        <p>Planned: a dashboard on this site that shows current stock levels and the weekly order plan, reading directly from the shared database (Fig. 2b), so the owner sees what is on the shelf and what to buy in one place.</p>
+        <div class="todo">Screenshot to come once the dashboard is built, using synthetic or approved data.</div>
       </div>
 
       <div class="card" style="margin-top:16px">
@@ -396,7 +415,7 @@
       <h2>Who built what</h2>
       <div class="team">
         <div class="person"><b>Mohinuddin Shaikh</b><span>Demand forecasting: method, evaluation, reproducibility</span></div>
-        <div class="person"><b>Sourabh Salunke</b><span>Data cleaning, dashboard, reporting</span></div>
+        <div class="person"><b>Sourabh Salunke</b><span>Database, data cleaning, inventory layer, dashboard</span></div>
         <div class="person"><b>Sun Xuan</b><span>Inventory, production planning</span></div>
         <div class="person"><b>Santiago Velasquez</b><span>Ordering website: front end, back end, admin portal</span></div>
         <div class="person"><b>Abhishek Roushan</b><span>Inventory Capture, barcode scanner app</span></div>
