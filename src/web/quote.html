@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request a Quote — Sample Bakery</title>
+  <link rel="icon" href="assets/img/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playball&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Jost:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="quote">
+  <main class="container" data-quote-page>
+    <header class="page-head">
+      <div class="eyebrow">One-of-a-kind</div>
+      <h1>Request a custom quote</h1>
+      <p class="lede">For designs beyond the builder. Describe your dream cake, add a photo if you have one, and the baker will send you a price.</p>
+    </header>
+
+    <div class="two-col">
+      <form data-quote-form novalidate>
+        <div class="notice" data-ref hidden style="gap:14px;align-items:center;margin-bottom:24px;background:var(--white);box-shadow:var(--shadow)"></div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="q-occasion">Occasion</label>
+            <select class="select" id="q-occasion" name="occasion" required>
+              <option value="">Choose one</option>
+              <option>Wedding</option><option>Birthday</option><option>Quinceañera</option>
+              <option>Baby shower</option><option>Kid's party</option><option>Anniversary</option>
+              <option>Cupcakes or cookies</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-servings">Number of guests</label>
+            <input class="input" id="q-servings" name="servings" type="number" min="1" max="500" placeholder="e.g. 40" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="q-desc">Describe your design</label>
+          <textarea class="textarea" id="q-desc" name="description" required maxlength="1500" placeholder="Theme, colors, tiers, flavors, decorations, anything that inspires you…"></textarea>
+        </div>
+
+        <div class="field">
+          <span class="label">Reference photos <span class="muted" style="font-weight:400">(optional, up to 4)</span></span>
+          <div class="dropzone" tabindex="0" role="button" aria-label="Upload reference photos">
+            <input type="file" name="photos" accept="image/*" multiple>
+            <div style="color:var(--gold-500);display:flex;justify-content:center;margin-bottom:8px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg></div>
+            <strong>Drop images here or click to browse</strong>
+            <div class="hint">Pinterest screenshots, sketches, color palettes — all welcome.</div>
+            <div class="thumbs"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="q-date">Date needed</label>
+          <input class="input" id="q-date" name="date" type="date" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="q-budget">Budget <span class="muted" style="font-weight:400">(optional)</span></label>
+            <select class="select" id="q-budget" name="budget">
+              <option value="">Not sure yet</option>
+              <option>Under $75</option><option>$75 – $150</option><option>$150 – $300</option><option>$300+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field"><label for="q-name">Name</label><input class="input" id="q-name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="q-email">Email</label><input class="input" id="q-email" name="email" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="q-phone">Phone</label><input class="input" id="q-phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Send my request</button>
+      </form>
+
+      <aside class="side-card">
+        <h3>What happens next</h3>
+        <ol>
+          <li>The baker reviews your idea.</li>
+          <li>You get a price and any questions by email within 1–2 days.</li>
+          <li>A <span data-deposit-pct>50</span>% deposit reserves your date.</li>
+          <li>Pick up your cake on your date.</li>
+        </ol>
+        <p style="margin-top:20px;font-size:14px;opacity:.85">Prefer to design it yourself? <a href="builder.html" style="color:var(--gold-300);text-decoration:underline">Try the builder</a>.</p>
+      </aside>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
+  <script src="js/demo-backend.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/availability.js"></script>
+</body>
+</html>

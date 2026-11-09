@@ -1,9 +1,9 @@
 {
-  "name": "bakery-order-management",
+  "name": "bakery-demand-forecasting",
   "private": true,
-  "description": "Ordering website and admin portal for a small custom-cake bakery (static HTML/CSS/JS + Supabase).",
+  "description": "Demand forecasting, inventory planning and online ordering for a small bakery-café.",
   "scripts": {
-    "start": "python3 -m http.server 8080 --directory src/web",
+    "start": "python3 -m http.server 8080",
     "db:push": "supabase db push",
     "fn:deploy": "supabase functions deploy respond"
   },

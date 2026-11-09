@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">How an order moves through the system</title>
+  <desc id="d">A customer builds a cake or picks one from the shop, chooses an open date and sends the order. A database function checks prices, notice and availability, then saves it. The owner reviews it in a two-factor admin portal and accepts or declines; an edge function emails the customer. Days the owner blocks show up as unavailable on the customer calendar.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5b4a42"/></marker>
+  </defs>
+  <rect width="1000" height="470" fill="#FFFBF3"/>
+
+  <text x="40" y="44" font-size="13" font-weight="700" letter-spacing="2" fill="#A31B3B">CUSTOMER · PUBLIC WEBSITE</text>
+  <text x="40" y="178" font-size="13" font-weight="700" letter-spacing="2" fill="#8a6d1f">SUPABASE · DATABASE + FUNCTIONS</text>
+  <text x="40" y="402" font-size="13" font-weight="700" letter-spacing="2" fill="#5b4a42">OWNER · ADMIN PORTAL</text>
+
+  <g font-size="15" fill="#2b1d17">
+    <rect x="40" y="62" width="200" height="86" rx="12" fill="#fff" stroke="#A31B3B" stroke-width="2"/>
+    <text x="140" y="96" text-anchor="middle" font-weight="700">1 · Choose a cake</text>
+    <text x="140" y="120" text-anchor="middle" font-size="13" fill="#5b4a42">shop, 7-step builder,</text>
+    <text x="140" y="137" text-anchor="middle" font-size="13" fill="#5b4a42">or custom quote</text>
+
+    <rect x="290" y="62" width="200" height="86" rx="12" fill="#fff" stroke="#A31B3B" stroke-width="2"/>
+    <text x="390" y="96" text-anchor="middle" font-weight="700">2 · Pick a date</text>
+    <text x="390" y="120" text-anchor="middle" font-size="13" fill="#5b4a42">calendar hides days that</text>
+    <text x="390" y="137" text-anchor="middle" font-size="13" fill="#5b4a42">are too soon or blocked</text>
+
+    <rect x="540" y="62" width="200" height="86" rx="12" fill="#fff" stroke="#A31B3B" stroke-width="2"/>
+    <text x="640" y="96" text-anchor="middle" font-weight="700">3 · Send order</text>
+    <text x="640" y="120" text-anchor="middle" font-size="13" fill="#5b4a42">cart + contact details,</text>
+    <text x="640" y="137" text-anchor="middle" font-size="13" fill="#5b4a42">no payment yet</text>
+
+    <rect x="790" y="62" width="170" height="86" rx="12" fill="#A31B3B"/>
+    <text x="875" y="96" text-anchor="middle" font-weight="700" fill="#fff">7 · Email reply</text>
+    <text x="875" y="120" text-anchor="middle" font-size="13" fill="#F7D9DF">confirmation with</text>
+    <text x="875" y="137" text-anchor="middle" font-size="13" fill="#F7D9DF">deposit, or new date</text>
+
+    <rect x="290" y="186" width="450" height="52" rx="12" fill="#F5E9D6" stroke="#C9A24B" stroke-width="2"/>
+    <text x="515" y="210" text-anchor="middle" font-weight="700">4 · submit_order() checks before saving</text>
+    <text x="515" y="228" text-anchor="middle" font-size="13" fill="#5b4a42">current prices · item still offered · enough notice · date not blocked</text>
+
+    <rect x="290" y="278" width="200" height="70" rx="12" fill="#F5E9D6" stroke="#C9A24B" stroke-width="2"/>
+    <text x="390" y="306" text-anchor="middle" font-weight="700">orders · quotes</text>
+    <text x="390" y="328" text-anchor="middle" font-size="13" fill="#5b4a42">row-level security</text>
+
+    <rect x="540" y="278" width="200" height="70" rx="12" fill="#F5E9D6" stroke="#C9A24B" stroke-width="2"/>
+    <text x="640" y="306" text-anchor="middle" font-weight="700">blocked_dates</text>
+    <text x="640" y="328" text-anchor="middle" font-size="13" fill="#5b4a42">read by the step 2 calendar</text>
+
+    <rect x="790" y="278" width="170" height="70" rx="12" fill="#F5E9D6" stroke="#C9A24B" stroke-width="2"/>
+    <text x="875" y="306" text-anchor="middle" font-weight="700">respond()</text>
+    <text x="875" y="328" text-anchor="middle" font-size="13" fill="#5b4a42">edge function, email</text>
+
+    <rect x="40" y="414" width="450" height="44" rx="12" fill="#fff" stroke="#5b4a42" stroke-width="2"/>
+    <text x="265" y="442" text-anchor="middle" font-weight="700">5 · Review in calendar (login + 2FA)</text>
+
+    <rect x="540" y="414" width="420" height="44" rx="12" fill="#fff" stroke="#5b4a42" stroke-width="2"/>
+    <text x="750" y="442" text-anchor="middle" font-weight="700">6 · Accept, decline or block days off</text>
+  </g>
+
+  <g fill="none" stroke="#5b4a42" stroke-width="2" marker-end="url(#a)">
+    <path d="M240 105H286"/>
+    <path d="M490 105H536"/>
+    <path d="M640 148V182"/>
+    <path d="M390 238V274"/>
+    <path d="M390 348V410"/>
+    <path d="M490 436H536"/>
+    <path d="M700 414V352"/>
+    <path d="M875 414V352"/>
+    <path d="M875 278V152"/>
+  </g>
+</svg>

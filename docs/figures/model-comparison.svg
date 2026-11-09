@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="t2 d2"><title id="t2">Forecast error by model</title><desc id="d2">Weighted absolute percentage error over 14 rolling origins. The top-down model scores 36.9 percent, against 47.2 percent for carrying last week forward and 56.7 percent for the same week last year.</desc><rect width="1000" height="480" fill="#ffffff"/>
+<text x="20" y="30" font-size="18" font-weight="700" fill="#1f2a44">Simple beat complex: forecast error by model (lower is better)</text>
+<text x="20" y="52" font-size="13" fill="#5a6478">WAPE across 14 rolling origins, 4-week horizon, 18 items</text>
+<line x1="330.0" y1="64" x2="330.0" y2="430" stroke="#e6e9ef"/><text x="330.0" y="450" text-anchor="middle" font-size="12" fill="#5a6478">0%</text>
+<line x1="523.3333333333333" y1="64" x2="523.3333333333333" y2="430" stroke="#e6e9ef"/><text x="523.3333333333333" y="450" text-anchor="middle" font-size="12" fill="#5a6478">20%</text>
+<line x1="716.6666666666666" y1="64" x2="716.6666666666666" y2="430" stroke="#e6e9ef"/><text x="716.6666666666666" y="450" text-anchor="middle" font-size="12" fill="#5a6478">40%</text>
+<line x1="910.0" y1="64" x2="910.0" y2="430" stroke="#e6e9ef"/><text x="910.0" y="450" text-anchor="middle" font-size="12" fill="#5a6478">60%</text>
+<text x="318" y="92" text-anchor="end" font-size="14" fill="#1f2a44" font-weight="700">Top-down (store level split to items)</text>
+<rect x="330" y="77" width="356.7" height="22" rx="4" fill="#2f6db5"/>
+<text x="694.7" y="93" font-size="13" fill="#1f2a44" font-weight="700">36.9%  ← shipped</text>
+<text x="318" y="132" text-anchor="end" font-size="14" fill="#1f2a44" font-weight="400">Top-down + yearly seasonality</text>
+<rect x="330" y="117" width="356.7" height="22" rx="4" fill="#8fa9cf"/>
+<text x="694.7" y="133" font-size="13" fill="#1f2a44" font-weight="400">36.9%</text>
+<text x="318" y="172" text-anchor="end" font-size="14" fill="#1f2a44" font-weight="400">12-week moving average per item</text>
+<rect x="330" y="157" width="358.6333333333333" height="22" rx="4" fill="#8fa9cf"/>
+<text x="696.6333333333333" y="173" font-size="13" fill="#1f2a44" font-weight="400">37.1%</text>
+<text x="318" y="212" text-anchor="end" font-size="14" fill="#1f2a44" font-weight="400">Top-down + month factors</text>
+<rect x="330" y="197" width="362.5" height="22" rx="4" fill="#8fa9cf"/>
+<text x="700.5" y="213" font-size="13" fill="#1f2a44" font-weight="400">37.5%</text>
+<text x="318" y="252" text-anchor="end" font-size="14" fill="#1f2a44" font-weight="400">Holt damped trend per item</text>
+<rect x="330" y="237" width="382.8" height="22" rx="4" fill="#8fa9cf"/>
+<text x="720.8" y="253" font-size="13" fill="#1f2a44" font-weight="400">39.6%</text>
+<text x="318" y="292" text-anchor="end" font-size="14" fill="#1f2a44" font-weight="400">Seasonal blend (first plan)</text>
+<rect x="330" y="277" width="427.26666666666665" height="22" rx="4" fill="#8fa9cf"/>
+<text x="765.2666666666667" y="293" font-size="13" fill="#1f2a44" font-weight="400">44.2%</text>
+<text x="318" y="332" text-anchor="end" font-size="14" fill="#1f2a44" font-weight="400">XGBoost, global model</text>
+<rect x="330" y="317" width="441.76666666666665" height="22" rx="4" fill="#8fa9cf"/>
+<text x="779.7666666666667" y="333" font-size="13" fill="#1f2a44" font-weight="400">45.7%</text>
+<text x="318" y="372" text-anchor="end" font-size="14" fill="#1f2a44" font-weight="400">Carry last week forward</text>
+<rect x="330" y="357" width="456.26666666666665" height="22" rx="4" fill="#b7bfcc"/>
+<text x="794.2666666666667" y="373" font-size="13" fill="#1f2a44" font-weight="400">47.2%  (baseline)</text>
+<text x="318" y="412" text-anchor="end" font-size="14" fill="#1f2a44" font-weight="400">Same week last year</text>
+<rect x="330" y="397" width="548.1" height="22" rx="4" fill="#b7bfcc"/>
+<text x="886.1" y="413" font-size="13" fill="#1f2a44" font-weight="400">56.7%  (baseline)</text>
+</svg>
