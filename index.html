@@ -49,7 +49,7 @@
     figure .frame { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; overflow: hidden; }
     figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
 
-    .pieces { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 20px; }
+    .pieces { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 20px; }
     .piece { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
     .piece .n { font-size: 12px; font-weight: 700; color: var(--blue); letter-spacing: .1em; }
     .piece h3 { font-size: 17px; margin: 6px 0; }
@@ -103,7 +103,7 @@
     <div class="wrap">
       <div class="eyebrow">Industry practicum · Analytics</div>
       <h1>Bakery Demand Forecasting and Inventory Analytics</h1>
-      <p class="tagline">A simple weekly forecast, a few replenishment rules and an online ordering site give a small bakery-café data-driven answers to “what do we bake, what do we buy, and when?”</p>
+      <p class="tagline">A simple weekly forecast, a phone stock scanner, a few replenishment rules and an online ordering site give a small bakery-café data-driven answers to “what do we bake, what do we buy, and when?”</p>
       <span class="draft">Draft · private until our partner approves publication</span>
     </div>
   </header>
@@ -112,7 +112,7 @@
     <div class="stats" aria-label="Key numbers">
       <div class="stat"><b>36.9%</b><span>forecast error (WAPE) with our top-down model</span></div>
       <div class="stat"><b>−10 pts</b><span>error compared with repeating last week’s sales (47.2%)</span></div>
-      <div class="stat"><b>4 pieces</b><span>forecast, inventory rules, dashboard and ordering site</span></div>
+      <div class="stat"><b>5 pieces</b><span>forecast, stock scanner, inventory rules, dashboard and ordering site</span></div>
     </div>
   </div>
 
@@ -121,6 +121,7 @@
       <a href="#summary">Summary</a>
       <a href="#problem">Problem</a>
       <a href="#data">Data</a>
+      <a href="#capture">Inventory Capture</a>
       <a href="#method">Methodology</a>
       <a href="#results">Results</a>
       <a href="#next">Next steps</a>
@@ -132,16 +133,17 @@
     <section id="summary">
       <div class="label">60-second summary</div>
       <h2>From chat-thread orders and gut feel to a weekly plan</h2>
-      <p>Small food businesses rarely have a data team. Our partner, a small bakery and café, decided how much to bake and what to buy from experience, and took custom cake orders through calls, texts and chat messages. That meant wasted product on slow days, sold-out items on busy ones, and orders that were easy to lose.</p>
+      <p>Small food businesses rarely have a data team. Our partner, a small bakery and café, decided how much to bake and what to buy from experience, and counted stock on paper, and took custom cake orders through calls, texts and chat messages. That meant wasted product on slow days, sold-out items on busy ones, and orders that were easy to lose.</p>
       <figure>
         <div class="frame"><img src="docs/figures/intro-before-after.svg" alt="Before: orders spread across calls, texts and chats, and purchasing by intuition. After: a website feeds one order database, a weekly forecast drives bake and buy plans, and a dashboard shows it all." width="1000" height="300"></div>
         <figcaption>Fig. 1 · What changes for the business.</figcaption>
       </figure>
       <div class="pieces">
-        <div class="piece"><div class="n">01</div><h3>Demand forecast</h3><p>Weekly units for the café’s 18 best-selling items, from 20 months of sales.</p></div>
-        <div class="piece"><div class="n">02</div><h3>Inventory rules</h3><p>A replenishment policy for each ingredient class, turned into shopping lists.</p></div>
-        <div class="piece"><div class="n">03</div><h3>Dashboard</h3><p>Sales trends and what to prepare, in one view for the owner.</p></div>
-        <div class="piece"><div class="n">04</div><h3>Ordering site</h3><p>Custom cake orders arrive structured, with a two-factor admin portal.</p></div>
+        <div class="piece"><div class="n">01</div><h3>Demand forecast</h3><p>Weekly units for each best-selling item, with a likely range and a green, amber or red rating.</p></div>
+        <div class="piece"><div class="n">02</div><h3>Inventory Capture</h3><p>A phone scan replaces a paper stock count, one clean row per scan.</p></div>
+        <div class="piece"><div class="n">03</div><h3>Inventory rules</h3><p>A replenishment policy for each ingredient class, turned into shopping lists.</p></div>
+        <div class="piece"><div class="n">04</div><h3>Dashboard</h3><p>Sales trends and what to prepare, in one view for the owner.</p></div>
+        <div class="piece"><div class="n">05</div><h3>Ordering site</h3><p>Custom cake orders arrive structured, with a two-factor admin portal.</p></div>
       </div>
     </section>
 
@@ -176,6 +178,7 @@
           <tbody>
             <tr><td>Café point-of-sale export</td><td>About 18,000 sales lines over 20 months, more than 100 menu items in 15 categories</td><td>Weekly forecast, sales patterns</td></tr>
             <tr><td>Recipe and ingredient file</td><td>Ingredient list and measured recipes for the custom cake flavors</td><td>Ingredient planning</td></tr>
+            <tr><td>Stock scans (new)</td><td>One row per scan from the Inventory Capture app</td><td>Inventory rules, production plan</td></tr>
             <tr><td>Website orders (new)</td><td>Structured custom cake orders from the site we built</td><td>Future forecasting of custom orders</td></tr>
           </tbody>
         </table>
@@ -187,20 +190,68 @@
       </figure>
     </section>
 
+    <section id="capture">
+      <div class="label">CAP domain III · Where our data begins</div>
+      <h2>Inventory Capture: a phone scan replaces a paper count</h2>
+      <p class="owner">Abhishek Roushan · barcode scanner app</p>
+      <p>Stock used to be counted on paper and typed into a sheet later, if at all. The scanner is a web app that turns any phone into a stock scanner: staff scan a product, confirm the quantity and an optional expiry date, and the scan is saved as one row, even offline. Stock data now arrives clean, timestamped and ready to plan production from.</p>
+      <figure>
+        <div class="frame"><img src="docs/figures/inventory-capture/flow.png" alt="Before: paper counts typed into a sheet later, if at all. Replaced by five steps: scan, read with four readers where two frames must agree, confirm quantity and expiry, save one row per scan even offline, and use it in the dashboard, API and production plan" width="1600" height="572" loading="lazy"></div>
+        <figcaption>Fig. 3 · Each scan becomes one row: product, barcode, change, on hand, expiry, time and phone.</figcaption>
+      </figure>
+      <div class="grid2" style="margin-top:18px">
+        <div class="card">
+          <h3>One product, one number</h3>
+          <p>A retail barcode (UPC-A in the US, EAN-13 elsewhere) ends in a check digit, so a misread almost always fails the math. The same product can be reported as a 12-, 13- or 14-digit number, so the app converts every read to one standard form: one product is always one row, never three.</p>
+        </div>
+        <div class="card">
+          <h3>Failsafes</h3>
+          <p>Four reading engines are tried in order (the phone’s built-in reader, ZXing in WebAssembly, ZXing in JavaScript, Quagga2). A number only counts when two camera frames agree, and each scan has a unique ID so a retry is never counted twice. If a label won’t scan, staff type the number or add the item with a photo.</p>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:4px">
+        <figure>
+          <div class="frame"><img src="docs/figures/inventory-capture/barcode.png" alt="Three ways a scanner can report the same barcode all map to one saved product; the check digit calculation catches misreads" width="1600" height="529" loading="lazy"></div>
+          <figcaption>Fig. 4 · Three forms of the same barcode become one product; the check digit catches most misreads.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><img src="docs/figures/inventory-capture/failsafe.png" alt="Four readers tried in turn, then a manual fallback, and four rules every number must pass before it is saved" width="1600" height="619" loading="lazy"></div>
+          <figcaption>Fig. 5 · Four readers, then a manual fallback. Green checks are the rules every number must pass.</figcaption>
+        </figure>
+      </div>
+      <p style="margin-top:14px"><strong>Free product data.</strong> Product names come from USDA FoodData Central and Open Food Facts, looked up once and remembered. With a free database plan and free hosting, this replaces lookup services that start at about $99 a month. <strong>Built for staff, set by the owner:</strong> big buttons, a beep on every read, one-tap expiry dates, and an admin page for the app’s name, logo, colors and which features staff can use.</p>
+      <figure>
+        <div class="frame"><img src="docs/figures/inventory-capture/screens.png" alt="Four phone screenshots of the scanner on made-up demo data: scanning, quantity and expiry, customized look, and admin settings" width="1600" height="817" loading="lazy"></div>
+        <figcaption>Fig. 6 · The scanner on made-up demo data: scanning, quantity and expiry, a customized look, and the owner’s settings.</figcaption>
+      </figure>
+      <p class="formula">We show the tool, never what it scanned: product lists, scan history, item photos and database keys stay private.</p>
+    </section>
+
     <section id="method">
       <div class="label">CAP domains IV–V · Methodology and models</div>
       <h2>Four connected pieces</h2>
       <figure>
         <div class="frame"><img src="docs/figures/methodology-workflow.svg" alt="Five-step workflow: question, data, models, tools, decisions" width="1000" height="230" loading="lazy"></div>
-        <figcaption>Fig. 3 · Project workflow.</figcaption>
+        <figcaption>Fig. 7 · Project workflow.</figcaption>
       </figure>
 
       <div class="card" style="margin-top:22px">
         <h3>1 · Demand forecast</h3>
-        <p class="owner">Mohinuddin Shaikh · forecasting and data pipeline</p>
-        <p>The shipped model is <strong>top-down</strong>: estimate the store’s weekly total as the mean of the last 12 clean weeks, then split it across items by each item’s recent share. Store totals forecast at about 16% error against 37% for single items, so estimating the level once cancels most item-level noise.</p>
-        <p>Models were compared on <strong>14 rolling origins</strong> with a 4-week horizon (7,056 forecast–actual pairs each) using <strong>WAPE</strong>. A seasonal term is built in but kept neutral: with 1.5 years of data the yearly pattern can’t yet be told apart from noise (ANOVA across months, p = 0.46).</p>
-        <p class="terms"><b>WAPE</b> (weighted absolute percentage error): all the units the forecast missed by, divided by all the units actually sold. 36.9% means that for every 100 items sold, the forecast was off by about 37 in total. <b>Rolling origin:</b> we went back to 14 different past weeks, forecast the next 4 weeks using only data available at that time, and compared with what really sold. This tests the model the way it will be used.</p>
+        <p class="owner">Mohinuddin Shaikh · demand forecasting: method, evaluation, reproducibility</p>
+        <p>The forecast works in two steps. First, it predicts <strong>total weekly units</strong> for the whole café as the average of the last 12 normal weeks. Second, it <strong>splits that total across items</strong> using each item’s average share of sales over the same 12 weeks. For weeks further ahead, each new forecast is added to the history and the average recalculated, so one rule covers any number of weeks.</p>
+        <p>The total comes first because single items are noisy: an item that sells five a week can easily sell three or eight by chance, while the café’s total is much steadier. This is <strong>top-down forecasting</strong>, and the item forecasts always add up to the total. Weeks are made comparable first: scaled to five trading days, short weeks set aside, one-off event weeks left out.</p>
+        <p>Each forecast comes with a <strong>likely range</strong> (the 5th to 95th percentile of the model’s own past errors) and a <strong>green, amber or red rating</strong> that says whether to plan from the number, from the range, or with a fixed stock level. It was tested with a <strong>walk-forward evaluation</strong>: from each past week, forecast up to 12 weeks ahead using only earlier data, then compare with what actually sold.</p>
+        <div>
+          <figure>
+            <div class="frame"><img src="reports/figures/forecast_workflow.png" alt="Six-step workflow: clean the sales lines, build a weekly table, forecast the total, split it across items, add a likely range from past misses, and plan using a green, amber or red rating" loading="lazy"></div>
+            <figcaption>Fig. 8 · How the forecast is built, step by step.</figcaption>
+          </figure>
+          <figure style="max-width:760px">
+            <div class="frame"><img src="reports/figures/forecast_example_synthetic.png" alt="Synthetic example: about 30 weeks of total weekly units with a 12-week average, followed by an eight-week forecast with a shaded likely range" loading="lazy"></div>
+            <figcaption>Fig. 9 · Example on synthetic data: forecast and likely range.</figcaption>
+          </figure>
+        </div>
+        <p class="terms"><b>WAPE</b> (weighted absolute percentage error): all the units the forecast missed by, divided by all the units actually sold. 36.9% means that for every 100 items sold, the forecast was off by about 37 in total. <b>Walk-forward test:</b> we pretend to stand at many past weeks, forecast using only what was known then, and compare with what really sold. This tests the model the way it will be used.</p>
       </div>
 
       <div class="card" style="margin-top:16px">
@@ -218,7 +269,7 @@
           </table>
         </div>
         <p class="formula">d = average daily demand · P = review period · L = lead time · S, SS = safety stock · T = order-up-to level</p>
-        <p style="margin-top:12px">The weekly forecast feeds a bill-of-materials conversion that produces a supermarket list and an online order sheet. Staff log counts and waste in a 60-second form.</p>
+        <p style="margin-top:12px">The weekly forecast feeds a bill-of-materials conversion that produces a supermarket list and an online order sheet. Stock counts come from the Inventory Capture scanner, so the plan starts from what is really on the shelf.</p>
       </div>
 
       <div class="card" style="margin-top:16px">
@@ -229,7 +280,7 @@
 
       <div class="card" style="margin-top:16px">
         <h3>4 · Online ordering system</h3>
-        <p class="owner">Santiago Velasquez · website and online ordering</p>
+        <p class="owner">Santiago Velasquez · ordering website: front end, back end and admin portal</p>
         <p><strong>The problem it solves.</strong> Custom cake orders had no data at all: they arrived by calls, texts and chat messages, so details got lost, prices were worked out by hand each time, and there was no record to learn from. The website replaces those threads with one guided ordering process, and every order is saved in the same structured format (the tables in Fig. 2). That gives the business, and our forecast, a clean source of custom-order data for the first time.</p>
         <p><strong>How a customer orders.</strong></p>
         <ol class="steps">
@@ -241,7 +292,7 @@
         </ol>
         <figure>
           <div class="frame"><img src="docs/figures/order-flow.svg" alt="Order flow: choose a cake, pick an open date, send the order; a database function checks and saves it; the owner reviews it in the portal and accepts or declines; an email goes to the customer" width="1000" height="470" loading="lazy"></div>
-          <figcaption>Fig. 4 · How an order moves through the system. Top row: what the customer does. Middle: the database checks and stores it. Bottom: what the owner does.</figcaption>
+          <figcaption>Fig. 10 · How an order moves through the system. Top row: what the customer does. Middle: the database checks and stores it. Bottom: what the owner does.</figcaption>
         </figure>
 
         <h3 style="margin-top:26px">Screenshots of the site</h3>
@@ -249,27 +300,27 @@
         <div class="shots">
           <figure>
             <a class="frame" href="docs/figures/site/1-home.jpg"><img src="docs/figures/site/1-home.jpg" alt="Website home page with the headline Cakes made for your sweetest moments and buttons to build a cake or browse the gallery" width="1280" height="860" loading="lazy"></a>
-            <figcaption><b>Fig. 5a · Home page.</b> The first thing customers see. The menu leads to the three ways to order: shop, cake builder and quote request.</figcaption>
+            <figcaption><b>Fig. 11a · Home page.</b> The first thing customers see. The menu leads to the three ways to order: shop, cake builder and quote request.</figcaption>
           </figure>
           <figure>
             <a class="frame" href="docs/figures/site/2-shop.jpg"><img src="docs/figures/site/2-shop.jpg" alt="Shop page listing ready-made cakes with a short description and starting price for each" width="1280" height="860" loading="lazy"></a>
-            <figcaption><b>Fig. 5b · Shop.</b> Ready-made cakes with a starting price. Each one opens a page to pick size and flavor and add it to the cart.</figcaption>
+            <figcaption><b>Fig. 11b · Shop.</b> Ready-made cakes with a starting price. Each one opens a page to pick size and flavor and add it to the cart.</figcaption>
           </figure>
           <figure>
             <a class="frame" href="docs/figures/site/3-builder.jpg"><img src="docs/figures/site/3-builder.jpg" alt="Cake builder on step 5 of 7, Color, with a lavender cake preview and a summary of the choices made so far" width="1280" height="860" loading="lazy"></a>
-            <figcaption><b>Fig. 5c · Cake builder.</b> Seven steps on the left (size, flavor, filling, icing, color, message, review). The drawing on the right changes with every choice, along with the summary and price.</figcaption>
+            <figcaption><b>Fig. 11c · Cake builder.</b> Seven steps on the left (size, flavor, filling, icing, color, message, review). The drawing on the right changes with every choice, along with the summary and price.</figcaption>
           </figure>
           <figure>
             <a class="frame" href="docs/figures/site/4-cart.jpg"><img src="docs/figures/site/4-cart.jpg" alt="Cart with the designed cake, the order total, the deposit amount, contact fields and a calendar where blocked days are striped" width="1280" height="1000" loading="lazy"></a>
-            <figcaption><b>Fig. 5d · Cart and pickup calendar.</b> Total and deposit are shown up front. Grey days are less than a week away, striped days are blocked by the owner, and only open days can be clicked.</figcaption>
+            <figcaption><b>Fig. 11d · Cart and pickup calendar.</b> Total and deposit are shown up front. Grey days are less than a week away, striped days are blocked by the owner, and only open days can be clicked.</figcaption>
           </figure>
           <figure>
             <a class="frame" href="docs/figures/site/5-confirm.jpg"><img src="docs/figures/site/5-confirm.jpg" alt="Order received message with an order number and the pickup date" width="1280" height="860" loading="lazy"></a>
-            <figcaption><b>Fig. 5e · Order received.</b> The customer gets an order number right away. Nothing is charged until the owner accepts the order.</figcaption>
+            <figcaption><b>Fig. 11e · Order received.</b> The customer gets an order number right away. Nothing is charged until the owner accepts the order.</figcaption>
           </figure>
           <figure>
             <a class="frame" href="docs/figures/site/6-quote.jpg"><img src="docs/figures/site/6-quote.jpg" alt="Quote request form with occasion, number of guests, design description, photo upload and a What happens next box" width="1280" height="860" loading="lazy"></a>
-            <figcaption><b>Fig. 5f · Quote request.</b> For designs the builder can’t cover. The customer describes the idea and can upload reference photos; the owner replies with a price.</figcaption>
+            <figcaption><b>Fig. 11f · Quote request.</b> For designs the builder can’t cover. The customer describes the idea and can upload reference photos; the owner replies with a price.</figcaption>
           </figure>
         </div>
         <p class="formula">The admin portal isn’t pictured: it only works with a real login and would show real customer orders.</p>
@@ -287,7 +338,7 @@
             </tbody>
           </table>
         </div>
-        <p style="margin-top:18px"><strong>Why it matters for the project.</strong> The forecast in piece 1 only covers the café, because custom cakes had no history. From now on, every website order is a dated, priced, itemized record, so custom-cake demand can be forecast too, and recipes can turn confirmed orders into ingredient lists for piece 2.</p>
+        <p style="margin-top:18px"><strong>Why it matters for the project.</strong> The forecast in piece 1 only covers the café, because custom cakes had no history. From now on, every website order is a dated, priced, itemized record, so custom-cake demand can be forecast too, and recipes can turn confirmed orders into ingredient lists for the inventory rules.</p>
         <a class="btn" href="src/web/index.html">Try the ordering demo →</a>
         <p class="formula">Runs on synthetic sample data in your browser. No real products, prices or customers.</p>
       </div>
@@ -298,7 +349,7 @@
       <h2>Simple beat complex</h2>
       <figure>
         <div class="frame"><img src="docs/figures/model-comparison.svg" alt="Bar chart of forecast error by model: top-down 36.9%, with yearly seasonality 36.9%, 12-week moving average 37.1%, month factors 37.5%, Holt damped trend 39.6%, seasonal blend 44.2%, XGBoost 45.7%, last week carried forward 47.2%, same week last year 56.7%" width="1000" height="480" loading="lazy"></div>
-        <figcaption>Fig. 6 · Forecast error (WAPE) by model. Lower is better. The top-down model is the one we deliver.</figcaption>
+        <figcaption>Fig. 12 · Forecast error (WAPE) by model. Draft numbers from our project paper; final results follow partner approval. Lower is better. The top-down model is the one we deliver.</figcaption>
       </figure>
       <div class="grid2" style="margin-top:12px">
         <div>
@@ -329,12 +380,13 @@
           <li>A daily model with day-of-week features</li>
           <li>Turn seasonality on once two full years of data exist</li>
           <li>Validate the inventory rules against real purchases and waste</li>
+          <li>A synthetic scan log so the scanner feeds the dashboard end to end</li>
           <li>Recipe-based ingredient planning for confirmed cake orders</li>
           <li>Online deposits for website orders</li>
         </ul>
         <div class="card">
           <h3>Limitations</h3>
-          <p style="margin:0">About 1.5 years of history, five trading days a week, and custom-order history only from the website onward.</p>
+          <p style="margin:0">Sales records show what sold, not what customers wanted when an item ran out. Seasonality needs at least two full years of data. Known events (holidays, large pre-orders) should be entered as adjustments. Custom-order history exists only from the website onward.</p>
         </div>
       </div>
     </section>
@@ -343,20 +395,20 @@
       <div class="label">Team</div>
       <h2>Who built what</h2>
       <div class="team">
-        <div class="person"><b>Mohinuddin Shaikh</b><span>Demand forecasting, data pipeline</span></div>
+        <div class="person"><b>Mohinuddin Shaikh</b><span>Demand forecasting: method, evaluation, reproducibility</span></div>
         <div class="person"><b>Sourabh Salunke</b><span>Data cleaning, dashboard, reporting</span></div>
         <div class="person"><b>Sun Xuan</b><span>Inventory, production planning</span></div>
-        <div class="person"><b>Santiago Velasquez</b><span>Website, online ordering</span></div>
-        <div class="person"><b>Abhishek Roushan</b><span>Role to be added</span></div>
+        <div class="person"><b>Santiago Velasquez</b><span>Ordering website: front end, back end, admin portal</span></div>
+        <div class="person"><b>Abhishek Roushan</b><span>Inventory Capture, barcode scanner app</span></div>
         <div class="person"><b>Prateek Jaiswal</b><span>Faculty mentor</span></div>
       </div>
-      <p style="margin-top:22px;font-size:14px;color:var(--muted)">Built with Python (pandas, statsmodels, Prophet, XGBoost), Google Forms and Sheets, HTML/CSS/JavaScript and Supabase. Code and full documentation are in the <a href="README.md">README</a>.</p>
+      <p style="margin-top:22px;font-size:14px;color:var(--muted)">Built with Python (pandas, NumPy, SciPy, statsmodels, matplotlib), HTML/CSS/JavaScript, Supabase, and ZXing and Quagga2 for barcode reading. Code and full documentation are in the <a href="README.md">README</a>.</p>
     </section>
   </main>
 
   <footer>
     <div class="wrap">
-      We thank our industry partner for their time and trust. An AI coding assistant helped draft parts of this page and the website code; the team reviewed every change. This page contains only aggregate results and synthetic data.
+      We thank our industry partner for their time and trust. AI coding assistants helped draft parts of this page and the website and scanner code; the team reviewed and tested every change, and no partner data or names were shared with AI tools. This page contains only aggregate results and synthetic data.
     </div>
   </footer>
 </body>

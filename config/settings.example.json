@@ -1,0 +1,26 @@
+{
+  "_comment": "Settings for the synthetic sample data. For real data, copy this file to data/settings.json (git-ignored) and change data_dir, file_pattern, date_format, columns and the item lists there. Never commit real column names, item names or dates.",
+  "data_dir": "data/synthetic",
+  "file_pattern": "sample_sales.csv",
+  "date_format": "",
+  "columns": {
+    "date": "date",
+    "time": "time",
+    "category": "category",
+    "item": "item",
+    "qty": "qty",
+    "net_sales": "net_sales"
+  },
+  "top_n_items": 18,
+  "exclude_items": [],
+  "exclude_categories": [],
+  "custom_order_items": ["Custom order"],
+  "custom_order_min_ticket": 100.0,
+  "known_event_weeks": [],
+  "level_window": 12,
+  "share_window": 12,
+  "max_horizon": 12,
+  "min_history": 26,
+  "range_quantiles": [0.05, 0.95],
+  "min_range_weeks": 26
+}
