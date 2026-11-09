@@ -147,23 +147,51 @@ Each forecast comes with a **likely range**: the 5th to 95th percentile of the m
 
 ![Synthetic example: about 30 weeks of total weekly units with a 12-week average, followed by an eight-week forecast that stays close to the recent average, with a shaded likely range around it.](reports/figures/forecast_example_synthetic.png)
 
-### 4.2 Inventory framework
+### 4.2 Inventory framework: from forecast to purchase orders
 
-*Owner: Sun Xuan (inventory, production planning)*
+*Owner: Sun Xuan (inventory models, replenishment logic, procurement pipeline)*
 
-<!-- TODO (owner): rewrite in your own words and add your polished figure, ~150–250 words. -->
+A lightweight, data-driven inventory framework for small food and beverage businesses such as independent cafes and bakeries. It bridges the gap between **predictive sales forecasting** and **prescriptive procurement**, translating anticipated customer demand into exact raw material order quantities while respecting real-world constraints like shelf life, minimum order quantities (MOQ) and supplier lead times.
 
-Ingredients are grouped by how fast they spoil and how much it hurts to run out, and each group gets the replenishment rule that fits its shelf life and lead time:
+![Four phases: demand ingestion reads the weekly forecast; BOM explosion multiplies it by recipe usage; each ingredient goes through its class rule (periodic review, reorder point or two-bin); purchase orders are rounded up to whole packs and split into a supermarket list and an online order sheet. Real consumption equals recipe usage plus waste.](docs/figures/inventory-pipeline.svg)
 
-| Class | Examples | Rule |
-|---|---|---|
-| A · Perishables | Milk, dairy | **Periodic review** twice a week: order up to T = (P + L) × d + S, rounded to whole units |
-| B · Core supplies | Coffee beans, tea | **Reorder point**: ROP = d × L + SS, triggered by the count of unopened bags |
-| C · Packaging and drinks | Cups, lids, canned drinks | **Two-bin / red line**: a visual trigger, no data entry |
+**Core components**
 
-*d = average daily demand, P = review period, L = lead time, S and SS = safety stock, T = order-up-to level.*
+- **`Raw_Material_Master`**: the central schema defining every ingredient and packaging item, including lead times, pack sizes, shelf life and designated inventory policy.
+- **`Recipe_BOM`** (bill of materials): the relational mapping that breaks finished menu items (e.g., lattes, empanadas) into standard raw material consumption units.
+- **Core replenishment models**: the mathematical and operational logic governing when and how much to order, tailored to the perishability and value of each item.
 
-The weekly forecast feeds a bill-of-materials conversion (for example, ounces of beans per coffee drink), which produces a supermarket run list and an online order sheet. Stock counts come from the Inventory Capture scanner (section 3), so the digital inventory stays aligned with what is really on the shelf.
+**System workflow**
+
+1. **Demand ingestion (input).** The system receives the weekly or daily forecasted sales for finished menu items (e.g., "predicted demand for next week: 150 lattes, 80 empanadas").
+2. **BOM explosion (processing).** The forecast is joined with the `Recipe_BOM`, multiplying forecasted sales of finished goods by the `Usage_Amount` of each component. Result: aggregate raw material demand (e.g., total fluid ounces of milk, total grams of espresso beans).
+3. **Inventory policy application (decision logic).** The aggregate demand is routed through the `Raw_Material_Master`, applying the replenishment model for each item's class:
+
+| Class | Examples | Model | Rule |
+|---|---|---|---|
+| A · Perishables | Milk, fresh produce | **Periodic review (P-model)** | Audit at fixed intervals; order Q = max(0, T − I), where T = (P + L) × d + S |
+| B · Core dry goods | Espresso beans, syrups, tea | **Continuous review (ROP)** | Order when stock falls to ROP = (d × L) + SS |
+| C · Packaging and drinks | Cups, lids, straws, bottled drinks | **Two-bin / red line** | Opening the second bin or exposing the red line triggers a bulk reorder |
+
+*d = average daily demand, P = review period, L = lead time, I = on-hand inventory, S and SS = safety stock, T = order-up-to level.*
+
+4. **Procurement output (action).** The system factors in each supplier's `Pack_Qty` and `MOQ`, rounding raw demand up to whole purchasable units (e.g., 10.6 gallons of milk becomes 11). Result: supplier-specific purchase orders, such as a supermarket list for perishables and an online order sheet for dry goods and packaging.
+
+**Control and waste mitigation.** New stock goes behind existing stock (first in, first out), and open dairy gets a "use-by" label. Real consumption = theoretical BOM usage + waste, so staff log closing counts and waste to keep the digital inventory aligned with physical stock.
+
+**What I did**
+
+1. **Designed the relational data schema.** Built the `Raw_Material_Master` and `Recipe_BOM` from scratch, with 1:N and M:N relationships between menu items and raw materials, and standardized all units of measurement to US customary units for consistent conversion.
+2. **Structured the replenishment logic.** Researched, selected and adapted industry-standard models (ROP, P-model, visual red line) to the realities of a small cafe, including shelf-life limits and exact supplier lead times.
+3. **Built the calculation pipeline.** Developed the data logic (convertible to SQL or Python/pandas) that merges sales forecasts with the BOM and master tables to output supplier-segmented order quantities.
+
+**Business impact**
+
+- **Less cognitive load and human error.** ABC classification removes the need to track every item daily: packaging relies on visual triggers, perishables on precise top-ups.
+- **Less spoilage and fewer stockouts.** The P-model for dairy and fresh ingredients limits over-ordering; reorder points for core items like coffee beans protect against stockouts and lost sales.
+- **Scalable at zero cost.** The framework is platform-agnostic: it runs today in free tools (Google Sheets and Forms) and migrates directly to the shared Supabase database (section 2.1) or a point-of-sale integration. Stock counts can come from the Inventory Capture scanner (section 3).
+
+<!-- The partner-specific implementation plan and the ingredient spreadsheet stay out of this repository (they contain partner data). -->
 
 ### 4.3 Dashboard
 
@@ -332,7 +360,7 @@ Python (pandas, NumPy, SciPy, statsmodels, matplotlib), Git and GitHub. Website:
 |---|---|---|
 | Mohinuddin Shaikh | Demand forecasting: method, evaluation, reproducibility | |
 | Abhishek Roushan | Inventory Capture: barcode scanner app | |
-| Sun Xuan | Inventory and production planning | |
+| Sun Xuan | Inventory framework: replenishment models, recipe BOM, procurement pipeline | |
 | Sourabh Salunke | Database, data cleaning, inventory layer, dashboard | |
 | Santiago Velasquez | Ordering website: front end, back end and admin portal | |
 | Prateek Jaiswal | Faculty mentor | |
