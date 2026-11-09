@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 330" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">From forecast to purchase orders</title>
+  <desc id="d">Four phases. Demand ingestion reads the weekly forecast of menu items. BOM explosion multiplies each item by the ingredients its recipe uses. Policy application routes each ingredient through its class rule: periodic review for perishables, reorder point for core dry goods, two-bin for packaging. Procurement output rounds up to whole packs and minimum order quantities and splits the result into a supermarket list and an online order sheet.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1f2a44"/></marker>
+  </defs>
+  <rect width="1000" height="330" fill="#ffffff"/>
+  <g font-size="13" fill="#1f2a44">
+    <rect x="20" y="40" width="215" height="170" rx="12" fill="#e8eef7" stroke="#2f6db5" stroke-width="2"/>
+    <text x="40" y="70" font-size="12" font-weight="700" letter-spacing="1.5" fill="#2f6db5">1 · INPUT</text>
+    <text x="40" y="96" font-size="17" font-weight="700">Demand ingestion</text>
+    <text x="40" y="124" fill="#5a6478">Weekly forecast of</text>
+    <text x="40" y="142" fill="#5a6478">menu items</text>
+    <text x="40" y="178" font-size="12" fill="#5a6478">e.g. 150 lattes,</text>
+    <text x="40" y="195" font-size="12" fill="#5a6478">80 savory pastries</text>
+
+    <rect x="265" y="40" width="215" height="170" rx="12" fill="#e8eef7" stroke="#2f6db5" stroke-width="2"/>
+    <text x="285" y="70" font-size="12" font-weight="700" letter-spacing="1.5" fill="#2f6db5">2 · PROCESSING</text>
+    <text x="285" y="96" font-size="17" font-weight="700">BOM explosion</text>
+    <text x="285" y="124" fill="#5a6478">Forecast × recipe usage</text>
+    <text x="285" y="142" fill="#5a6478">for every ingredient</text>
+    <text x="285" y="178" font-size="12" fill="#5a6478">= total fl oz of milk,</text>
+    <text x="285" y="195" font-size="12" fill="#5a6478">total oz of beans</text>
+
+    <rect x="510" y="40" width="215" height="170" rx="12" fill="#fff7ef" stroke="#c26b2b" stroke-width="2"/>
+    <text x="530" y="70" font-size="12" font-weight="700" letter-spacing="1.5" fill="#c26b2b">3 · DECISION</text>
+    <text x="530" y="96" font-size="17" font-weight="700">Policy by class</text>
+    <text x="530" y="126" fill="#5a6478"><tspan font-weight="700" fill="#1f2a44">A</tspan> perishables: periodic</text>
+    <text x="530" y="150" fill="#5a6478"><tspan font-weight="700" fill="#1f2a44">B</tspan> dry goods: reorder point</text>
+    <text x="530" y="174" fill="#5a6478"><tspan font-weight="700" fill="#1f2a44">C</tspan> packaging: two-bin</text>
+
+    <rect x="755" y="40" width="225" height="170" rx="12" fill="#1f2a44"/>
+    <text x="775" y="70" font-size="12" font-weight="700" letter-spacing="1.5" fill="#9fb6dc">4 · ACTION</text>
+    <text x="775" y="96" font-size="17" font-weight="700" fill="#ffffff">Purchase orders</text>
+    <text x="775" y="124" fill="#d8e2f2">Round up to whole packs</text>
+    <text x="775" y="142" fill="#d8e2f2">and minimum orders</text>
+    <text x="775" y="178" font-size="12" fill="#d8e2f2">→ supermarket run list</text>
+    <text x="775" y="195" font-size="12" fill="#d8e2f2">→ online order sheet</text>
+  </g>
+  <g fill="none" stroke="#1f2a44" stroke-width="2" marker-end="url(#a)">
+    <path d="M235 125H261"/>
+    <path d="M480 125H506"/>
+    <path d="M725 125H751"/>
+  </g>
+  <rect x="20" y="240" width="960" height="66" rx="12" fill="#f6f7fa" stroke="#e3e7ee"/>
+  <text x="40" y="268" font-size="13" font-weight="700" fill="#1f2a44">Feedback from the shelf</text>
+  <text x="40" y="290" font-size="13" fill="#5a6478">Real consumption = recipe usage + waste. Closing counts and logged waste keep the digital inventory equal to the physical stock.</text>
+</svg>

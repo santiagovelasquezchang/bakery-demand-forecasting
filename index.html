@@ -273,21 +273,32 @@
       </div>
 
       <div class="card" style="margin-top:16px">
-        <h3>2 · Inventory framework</h3>
-        <p class="owner">Sun Xuan · inventory and production planning</p>
-        <p>Ingredients are grouped by how fast they spoil and how much it hurts to run out, and each group gets its own buying rule.</p>
+        <h3>2 · Inventory framework: from forecast to purchase orders</h3>
+        <p class="owner">Sun Xuan · inventory models, replenishment logic and procurement pipeline</p>
+        <p>The forecast says how many lattes or pastries will sell. The bakery, though, buys milk by the gallon, beans by the bag and cups by the case. This framework turns predicted sales into <strong>exact order quantities</strong>, while respecting shelf life, supplier lead times and minimum order sizes.</p>
+        <figure>
+          <div class="frame"><img src="docs/figures/inventory-pipeline.svg" alt="Four phases: demand ingestion reads the weekly forecast; BOM explosion multiplies it by recipe usage; each ingredient goes through its class rule; purchase orders are rounded up to whole packs and split into a supermarket list and an online order sheet" width="1000" height="330" loading="lazy"></div>
+          <figcaption>Fig. 7b · From forecast to purchase orders, in four phases. Logged waste feeds back so the system matches the real shelf.</figcaption>
+        </figure>
+        <ol class="steps">
+          <li><strong>Demand ingestion.</strong> Read next week’s forecast for each menu item, for example 150 lattes.</li>
+          <li><strong>BOM explosion.</strong> A bill of materials (the recipe table) says how much of each ingredient one item uses. Multiplying forecast by recipe gives total ingredient demand, such as fluid ounces of milk or ounces of beans.</li>
+          <li><strong>Policy by class.</strong> Each ingredient goes through the buying rule that fits how fast it spoils and how long it takes to arrive (table below).</li>
+          <li><strong>Purchase orders.</strong> Quantities are rounded up to whole packs and minimum orders (10.6 gallons of milk becomes 11) and split by where they are bought: a supermarket run list and an online order sheet.</li>
+        </ol>
         <div class="table-scroll">
           <table>
-            <thead><tr><th>Class</th><th>Examples</th><th>Rule</th></tr></thead>
+            <thead><tr><th>Class</th><th>Examples</th><th>Rule</th><th>Why</th></tr></thead>
             <tbody>
-              <tr><td>A · Perishables</td><td>Milk, dairy</td><td><strong>Periodic review</strong> twice a week, order up to T = (P + L)·d + S</td></tr>
-              <tr><td>B · Core supplies</td><td>Coffee beans, tea</td><td><strong>Reorder point</strong> ROP = d·L + SS</td></tr>
-              <tr><td>C · Packaging, drinks</td><td>Cups, lids, cans</td><td><strong>Two-bin / red line</strong>, a visual trigger</td></tr>
+              <tr><td>A · Perishables</td><td>Milk, dairy</td><td><strong>Periodic review</strong> at fixed times (e.g. twice a week): order Q = max(0, T − I), with T = (P + L)·d + S</td><td>Buys only what covers the next cycle, so less spoils</td></tr>
+              <tr><td>B · Core dry goods</td><td>Coffee beans, tea</td><td><strong>Reorder point</strong>: order when stock falls to ROP = d·L + SS</td><td>A safety buffer covers shipping delays, so they never run out</td></tr>
+              <tr><td>C · Packaging, drinks</td><td>Cups, lids, straws, cans</td><td><strong>Two-bin / red line</strong>: opening the second bin triggers a reorder</td><td>No counting or data entry for cheap, bulky items</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="formula">d = average daily demand · P = review period · L = lead time · S, SS = safety stock · T = order-up-to level</p>
-        <p style="margin-top:12px">The weekly forecast feeds a bill-of-materials conversion that produces a supermarket list and an online order sheet. Stock counts come from the Inventory Capture scanner, so the plan starts from what is really on the shelf.</p>
+        <p class="formula">d = average daily demand · P = time between reviews · L = supplier lead time · I = stock on hand · S, SS = safety stock · T = order-up-to level</p>
+        <p style="margin-top:12px"><strong>Keeping it honest.</strong> Real consumption is recipe usage plus waste, so staff log closing counts and waste (expired milk, coffee used to calibrate the grinder). New stock goes behind old stock (first in, first out) and open dairy gets a use-by label.</p>
+        <p><strong>Why it matters.</strong> Staff no longer track every item by hand, perishables are topped up precisely instead of by habit, and core items have a buffer against stockouts. It runs today in free tools (Google Sheets and Forms) and moves directly onto the shared database (Fig. 2b), with counts from the scanner.</p>
       </div>
 
       <div class="card" style="margin-top:16px">
@@ -416,7 +427,7 @@
       <div class="team">
         <div class="person"><b>Mohinuddin Shaikh</b><span>Demand forecasting: method, evaluation, reproducibility</span></div>
         <div class="person"><b>Sourabh Salunke</b><span>Database, data cleaning, inventory layer, dashboard</span></div>
-        <div class="person"><b>Sun Xuan</b><span>Inventory, production planning</span></div>
+        <div class="person"><b>Sun Xuan</b><span>Inventory framework, replenishment models</span></div>
         <div class="person"><b>Santiago Velasquez</b><span>Ordering website: front end, back end, admin portal</span></div>
         <div class="person"><b>Abhishek Roushan</b><span>Inventory Capture, barcode scanner app</span></div>
         <div class="person"><b>Prateek Jaiswal</b><span>Faculty mentor</span></div>
